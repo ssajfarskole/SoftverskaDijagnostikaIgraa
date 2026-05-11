@@ -1,0 +1,174 @@
+@import "tailwindcss";
+
+@layer base {
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    overflow: hidden;
+    background: #0a0a1a;
+    user-select: none;
+  }
+  #root {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+}
+
+/* ─── Desktop wallpaper ─────────────────────────────────── */
+.desktop-wallpaper {
+  background:
+    radial-gradient(ellipse at 20% 30%, rgba(59,130,246,0.15) 0%, transparent 50%),
+    radial-gradient(ellipse at 80% 70%, rgba(139,92,246,0.12) 0%, transparent 50%),
+    linear-gradient(160deg, #0d1b3e 0%, #0a1628 30%, #070d20 60%, #0d1b3e 100%);
+}
+
+/* ─── Window shadows ────────────────────────────────────── */
+.window-shadow {
+  box-shadow:
+    0 8px 32px rgba(0,0,0,0.55),
+    0 2px 8px rgba(0,0,0,0.35),
+    0 0 0 1px rgba(255,255,255,0.06);
+}
+
+/* ─── Taskbar glass ─────────────────────────────────────── */
+.taskbar-glass {
+  background: rgba(20, 28, 50, 0.92);
+  backdrop-filter: blur(20px) saturate(1.5);
+  border-top: 1px solid rgba(255,255,255,0.08);
+}
+
+/* ─── Glass card ────────────────────────────────────────── */
+.glass {
+  background: rgba(255,255,255,0.92);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+
+/* ─── Desktop icon hover ────────────────────────────────── */
+.icon-hover {
+  cursor: pointer;
+  border-radius: 8px;
+  transition: background 0.15s, transform 0.1s;
+}
+.icon-hover:hover { background: rgba(255,255,255,0.14); transform: translateY(-1px); }
+.icon-hover:active { background: rgba(255,255,255,0.22); transform: scale(0.97); }
+
+/* ─── Terminal font ─────────────────────────────────────── */
+.terminal-font { font-family: 'Cascadia Code', 'Consolas', 'Courier New', monospace; font-size: 12px; }
+
+/* ─── Text shadow ───────────────────────────────────────── */
+.text-shadow { text-shadow: 0 1px 3px rgba(0,0,0,0.8), 0 0 8px rgba(0,0,0,0.5); }
+
+/* ─── No select ─────────────────────────────────────────── */
+.no-select { user-select: none; -webkit-user-select: none; }
+
+/* ─── Scanline effect ───────────────────────────────────── */
+.scanline {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.03) 2px,
+    rgba(0,0,0,0.03) 4px
+  );
+  z-index: 5000;
+}
+
+/* ─── BSOD ──────────────────────────────────────────────── */
+.bsod-screen {
+  background: #0078d4;
+  color: white;
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  position: absolute;
+  inset: 0;
+  z-index: 9999;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 60px;
+}
+
+/* ─── Glitch overlay ────────────────────────────────────── */
+@keyframes glitch {
+  0%   { transform: translate(0); opacity: 0.03; }
+  20%  { transform: translate(-2px, 1px); opacity: 0.06; }
+  40%  { transform: translate(2px, -1px); opacity: 0.04; }
+  60%  { transform: translate(-1px, 2px); opacity: 0.07; }
+  80%  { transform: translate(1px, -2px); opacity: 0.03; }
+  100% { transform: translate(0); opacity: 0.05; }
+}
+
+.glitch-overlay {
+  animation: glitch 0.15s infinite;
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background: rgba(255, 0, 0, 0.05);
+  z-index: 4999;
+}
+
+/* ─── Popup shake ───────────────────────────────────────── */
+@keyframes popup-shake {
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-4px); }
+  50%  { transform: translateX(4px); }
+  75%  { transform: translateX(-2px); }
+  100% { transform: translateX(0); }
+}
+
+/* ─── Notification slide ────────────────────────────────── */
+@keyframes notification-slide {
+  from { transform: translateX(120%); opacity: 0; }
+  to   { transform: translateX(0); opacity: 1; }
+}
+
+/* ─── Fade in ───────────────────────────────────────────── */
+@keyframes fade-in {
+  from { opacity: 0; transform: scale(0.97) translateY(4px); }
+  to   { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+/* ─── Slide up ──────────────────────────────────────────── */
+@keyframes slide-up {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ─── Progress bar shimmer ──────────────────────────────── */
+@keyframes shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.progress-shimmer {
+  background: linear-gradient(90deg, #3b82f6 0%, #60a5fa 50%, #3b82f6 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* ─── Scrollbar ─────────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; height: 6px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,0.05); }
+::-webkit-scrollbar-thumb { background: rgba(0,0,0,0.2); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.35); }
+
+/* ─── Window resize handles ─────────────────────────────── */
+.resize-handle {
+  position: absolute;
+  z-index: 10;
+}
+.resize-handle-e  { right: 0; top: 8px; bottom: 8px; width: 4px; cursor: e-resize; }
+.resize-handle-s  { bottom: 0; left: 8px; right: 8px; height: 4px; cursor: s-resize; }
+.resize-handle-se { right: 0; bottom: 0; width: 12px; height: 12px; cursor: se-resize; }
+.resize-handle-w  { left: 0; top: 8px; bottom: 8px; width: 4px; cursor: w-resize; }
+.resize-handle-n  { top: 0; left: 8px; right: 8px; height: 4px; cursor: n-resize; }
+.resize-handle-sw { left: 0; bottom: 0; width: 12px; height: 12px; cursor: sw-resize; }
+.resize-handle-nw { left: 0; top: 0; width: 12px; height: 12px; cursor: nw-resize; }
+.resize-handle-ne { right: 0; top: 0; width: 12px; height: 12px; cursor: ne-resize; }
