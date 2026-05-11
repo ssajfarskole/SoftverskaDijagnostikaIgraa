@@ -2,12 +2,21 @@ name: Deploy Vite Site to Pages
 
 on:
   push:
-    branches: ["main"] # Change this to "master" if that is your default branch
+    branches: ["main"]
 
 permissions:
   contents: read
   pages: write
   id-token: write
+
+# Allow only one concurrent deployment
+concurrency:
+  group: "pages"
+  cancel-in-progress: true
+
+env:
+  # Opt-in to Node 24 now to clear the deprecation warning
+  FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
 jobs:
   build:
@@ -19,19 +28,23 @@ jobs:
       - name: Set up Node
         uses: actions/setup-node@v4
         with:
-          node-version: 20
+          # Updated to Node 22 (LTS) or 24 to align with runner changes
+          node-version: 22
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci # 'npm ci' is faster and more reliable for CI/CD than 'npm install'
 
       - name: Build project
         run: npm run build
 
+      # DEBUG STEP: This helps you see if 'dist' actually exists if it fails again
+      - name: Check build output
+        run: ls -R ./dist
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          # Vite outputs to the 'dist' folder by default
           path: './dist'
 
   deploy:
