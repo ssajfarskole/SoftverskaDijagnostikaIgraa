@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useGame } from '../GameContext';
-import { Cloud, Download, RefreshCw, CheckCircle, AlertTriangle, HardDrive, Clock } from 'lucide-react';
+import { Cloud, Download, RefreshCw, CheckCircle, AlertTriangle, HardDrive, Clock, Plus } from 'lucide-react';
 
 interface BackupPoint {
   id: string;
